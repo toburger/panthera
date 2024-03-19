@@ -2,7 +2,7 @@
   (:refer-clojure
    :exclude [mod])
   (:require
-   [libpython-clj.python :as py]
+   [libpython-clj2.python :as py]
    [panthera.pandas.utils :as u]))
 
 (defn same?

@@ -2,7 +2,7 @@
   (:refer-clojure
    :exclude [drop])
   (:require
-   [libpython-clj.python :as py]
+   [libpython-clj2.python :as py]
    [panthera.pandas.utils :as u]
    [panthera.pandas.generics :as g]))
 

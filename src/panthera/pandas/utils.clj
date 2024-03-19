@@ -1,7 +1,7 @@
 (ns panthera.pandas.utils
   (:require
-   [libpython-clj.python :as py]
-   [libpython-clj.require :refer [require-python]]
+   [libpython-clj2.python :as py]
+   [libpython-clj2.require :refer [require-python]]
    [camel-snake-kebab.extras :as cske]
    [clojure.core.memoize :as m]))
 

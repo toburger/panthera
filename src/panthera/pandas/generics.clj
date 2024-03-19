@@ -5,7 +5,7 @@
   (:refer-clojure
    :exclude [any?])
   (:require
-   [libpython-clj.python :as py]
+   [libpython-clj2.python :as py]
    [panthera.pandas.utils :as u]))
 
 (defn series
