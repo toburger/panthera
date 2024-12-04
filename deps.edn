@@ -1,0 +1,9 @@
+{:deps {clj-python/libpython-clj {:mvn/version "2.025"}
+        techascent/tech.parallel {:mvn/version "2.11"}
+        org.clojure/core.memoize {:mvn/version "1.1.266"}
+        camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}}
+ :aliases {:dev {:extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}}}}
+ :scm {:name "git"
+       :url "https://github.com/alanmarazzi/panthera"}
+ :license {:name "EPL-2.0"
+           :url "https://www.eclipse.org/legal/epl-2.0/"}}
