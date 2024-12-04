@@ -1,7 +1,6 @@
 (ns panthera.pandas.utils
   (:require
    [libpython-clj2.python :as py]
-   [libpython-clj2.require :refer [require-python]]
    [camel-snake-kebab.extras :as cske]
    [clojure.core.memoize :as m]))
 
@@ -75,14 +74,14 @@
 
 (def pystr->cljk
   (comp
-    keyword
-    #(clojure.string/replace % #"_" "-")
-    #(clojure.string/replace % #" " "-")))
+   keyword
+   #(clojure.string/replace % #"_" "-")
+   #(clojure.string/replace % #" " "-")))
 
 (def cljk->pystr
   (comp
-    #(clojure.string/replace % #"-" "_")
-    name))
+   #(clojure.string/replace % #"-" "_")
+   name))
 
 (def memo-key-converter
   "Convert regular Clojure kebab-case keys to idiomatic
@@ -106,11 +105,11 @@
   (memo-columns-converter \"ALL_CAPS\") ; :ALL-CAPS
   ```"
   (m/fifo
-    #(cond
-       (number? %) %
-       (string? %) (pystr->cljk %)
-       (nil? %) nil
-       :else (mapv pystr->cljk %)) {} :fifo/threshold 512))
+   #(cond
+      (number? %) %
+      (string? %) (pystr->cljk %)
+      (nil? %) nil
+      :else (mapv pystr->cljk %)) {} :fifo/threshold 512))
 
 (defn vec->pylist
   "Converts an iterable Clojure data structure to a Python list
@@ -179,9 +178,9 @@
   ```"
   [m]
   (let [nm (reduce-kv
-             (fn [m k v]
-               (assoc m k (vals->pylist v)))
-             {} m)]
+            (fn [m k v]
+              (assoc m k (vals->pylist v)))
+            {} m)]
     (cske/transform-keys memo-key-converter nm)))
 
 (defn series?
@@ -231,19 +230,19 @@
   [obj]
   (let [cnt (py/get-attr obj "shape")]
     (->DATASET
-      (py/get-attr obj "index")
-      (py/get-attr obj "columns")
-      (lazy-seq (py/get-attr obj "values"))
-      cnt)))
+     (py/get-attr obj "index")
+     (py/get-attr obj "columns")
+     (lazy-seq (py/get-attr obj "values"))
+     cnt)))
 
 (defmethod to-clj true
   [obj]
   (let [cnt (py/get-attr obj "shape")]
     (->DATASET
-      (py/get-attr obj "index")
-      (or (py/get-attr obj "name") "unnamed")
-      (lazy-seq (py/get-attr obj "values"))
-      cnt)))
+     (py/get-attr obj "index")
+     (or (py/get-attr obj "name") "unnamed")
+     (lazy-seq (py/get-attr obj "values"))
+     cnt)))
 
 (defmulti kwrds?
   (fn [obj keywords?] (boolean keywords?)))
@@ -252,8 +251,8 @@
   [obj keywords?]
   (if (series? obj)
     (let [nm (memo-columns-converter
-               (or (py/get-attr obj "name")
-                   "unnamed"))]
+              (or (py/get-attr obj "name")
+                  "unnamed"))]
       (into [] (map #(assoc {} nm %))
             (vec obj)))
     (let [ks (map memo-columns-converter
@@ -334,4 +333,4 @@
         (if (@acc-cache m)
           (apply py/call-attr s m args)
           (throw (Exception.
-                   (str "The method must be one among: " @acc-cache))))))))
+                  (str "The method must be one among: " @acc-cache))))))))

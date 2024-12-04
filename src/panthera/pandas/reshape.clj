@@ -3,8 +3,7 @@
    :exclude [drop])
   (:require
    [libpython-clj2.python :as py]
-   [panthera.pandas.utils :as u]
-   [panthera.pandas.generics :as g]))
+   [panthera.pandas.utils :as u]))
 
 (defn crosstab
   "Compute a cross tabulation of two (or more) factors. By default
