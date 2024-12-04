@@ -1,4 +1,5 @@
-{:deps {clj-python/libpython-clj {:mvn/version "2.025"}
+{:paths ["src"]
+ :deps {clj-python/libpython-clj {:mvn/version "2.025"}
         techascent/tech.parallel {:mvn/version "2.11"}
         org.clojure/core.memoize {:mvn/version "1.1.266"}
         camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}}
