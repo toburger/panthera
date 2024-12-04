@@ -11,7 +11,6 @@ pom.xml.asc
 .hgignore
 .hg/
 *.csv
-*.edn
 .idea
 .cpcache
 *.iml
@@ -21,3 +20,6 @@ examples/.ipynb_checkpoints
 .project
 .settings
 resources/docs.md
+.clj-kondo/
+.lsp/
+.portal/
